@@ -4,22 +4,28 @@
 require 'prime'
 
 def get_largest_prime number
-  i = number / 2 
-  if i.even?
-    i = i - 1
+  if number % 2 == 0
+    i = number / 2
+  else
+    i = number
   end
   largest = 1
   while i > 1
     if number % i == 0
       if Prime.prime?(i)
-        largest = i 
+        largest = i
         break
       end
     end
-    i = i - 2
+    i = i - 1
   end
   largest
 end
 
-#puts get_largest_prime(13195)
-puts get_largest_prime(600851475143)
+the_number = 13195
+#the_number = 600851475143
+
+puts "The largest prime factor of #{the_number} is"
+puts "#{get_largest_prime(the_number)}"
+
+# This solution only works for the example number, not 600851475143
