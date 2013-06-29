@@ -46,32 +46,26 @@ end
 
 def find_largest_product(map)
   max_product = 0
-  next_product = 0
-  current_line = 0
+  product = 0
   (0..map.length-4).each do |line|
-    element = 0
-    (0..map[0].count-4).each do |column|
+    (0..map[0].count-4).each do |element|
       # up/down
-      next_product = map[current_line].fetch(element, 0).to_i * map[current_line + 1].fetch(element, 0).to_i * 
-        map[current_line + 2].fetch(element, 0).to_i * map[current_line + 3].fetch(element, 0).to_i
-      max_product = next_product if next_product > max_product
+      product = map[line].fetch(element, 0).to_i * map[line + 1].fetch(element, 0).to_i * 
+        map[line + 2].fetch(element, 0).to_i * map[line + 3].fetch(element, 0).to_i
+      max_product = product if product > max_product
       # left/right
-      next_product = map[current_line].fetch(element, 0).to_i * map[current_line].fetch(element + 1, 0).to_i *
-        map[current_line].fetch(element + 2, 0).to_i * map[current_line].fetch(element + 3, 0).to_i
-      max_product = next_product if next_product > max_product
+      product = map[line].fetch(element, 0).to_i * map[line].fetch(element + 1, 0).to_i *
+        map[line].fetch(element + 2, 0).to_i * map[line].fetch(element + 3, 0).to_i
+      max_product = product if product > max_product
       # diagonal 
-      next_product = map[current_line].fetch(element, 0).to_i * map[current_line + 1].fetch(element + 1, 0).to_i *
-        map[current_line + 2].fetch(element + 2, 0).to_i * map[current_line + 3].fetch(element + 3, 0).to_i
-      max_product = next_product if next_product > max_product
+      product = map[line].fetch(element, 0).to_i * map[line + 1].fetch(element + 1, 0).to_i *
+        map[line + 2].fetch(element + 2, 0).to_i * map[line + 3].fetch(element + 3, 0).to_i
+      max_product = product if product > max_product
       # diagonal other direction
-      next_product = map[current_line].fetch(element + 3, 0).to_i * map[current_line + 1].fetch(element + 2, 0).to_i *
-        map[current_line + 2].fetch(element + 1, 0).to_i * map[current_line + 3].fetch(element, 0).to_i
-      max_product = next_product if next_product > max_product
-
-      element += 1
+      product = map[line].fetch(element + 3, 0).to_i * map[line + 1].fetch(element + 2, 0).to_i *
+        map[line + 2].fetch(element + 1, 0).to_i * map[line + 3].fetch(element, 0).to_i
+      max_product = product if product > max_product
     end
-    element = 0
-    current_line += 1
   end
   max_product
 end
