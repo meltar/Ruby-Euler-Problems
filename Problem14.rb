@@ -13,14 +13,13 @@
 # 
 # NOTE: Once the chain starts the terms are allowed to go above one million.
 
-def generate_chain(start)
-  num = start
+def generate_chain(num)
   chain = [num]
   while num > 1
     if num.even?
       num = num/2
     else
-      num = 3 * num + 1
+      num = 3*num+1
     end
     chain << num
   end
@@ -30,17 +29,14 @@ end
 def find_longest_chain
   max_chain_start = 0
   max_chain_length = 0
-  start = 1000000
-  while start > 1 do
+  1000000.downto(1) do |start| 
     length = generate_chain(start)
     if length > max_chain_length
       max_chain_length = length
       max_chain_start = start
     end
-    start -= 1
   end
   max_chain_start
 end
 
-#puts generate_chain(13)
 puts find_longest_chain
