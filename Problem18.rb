@@ -51,17 +51,11 @@ def read_map(filename)
 end
 
 def generate_route(map, line, index)
-  route = map[line].fetch(index).to_i
+  value = map[line].fetch(index).to_i
   if map.length-1 >= line+1
-    route_left = generate_route(map, line+1, index)
-    route_right = generate_route(map, line+1, index+1)
-    if route_left > route_right
-      route += route_left
-    else
-      route += route_right
-    end
+    value += [generate_route(map, line+1, index), generate_route(map, line+1, index+1)].max
   end
-  route
+  value
 end
 
 #data = read_map("Problem18_source_sample.txt")
