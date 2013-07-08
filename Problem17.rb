@@ -12,14 +12,14 @@ stored_words = { '1'=> 'one', '2'=> 'two', '3'=> 'three', '4'=> 'four', '5'=> 'f
             '8'=> 'eight', '9'=> 'nine', '10'=> 'ten', '11'=> 'eleven', '12'=> 'twelve', '13'=> 'thirteen', 
             '14'=> 'fourteen', '15'=> 'fifteen', '16'=> 'sixteen', '17'=> 'seventeen', '18'=> 'eighteen', 
             '19'=> 'nineteen', '20'=> 'twenty', '30'=> 'thirty', '40'=> 'forty', '50'=> 'fifty', '60'=> 'sixty',
-            '70'=> 'seventy', '80'=> 'eighty', '90'=> 'ninety', '100'=> 'hundred', '1000'=> 'one thousand', '0'=> ''}
+            '70'=> 'seventy', '80'=> 'eighty', '90'=> 'ninety', '1000'=> 'one thousand', '0'=> ''}
 
 def word_form_of_number(words, value, accumulated_string)
   word_form = accumulated_string
-  if value < 20 || value == 1000
-    word_form << "#{words.fetch(value.to_s)} "
+  if words.has_key?(value.to_s)
+    word_form << "#{words.fetch(value.to_s)}"
   elsif value < 100
-    temp_val = "#{value.to_s.each_char.first}0"
+    temp_val = "#{value.to_s[0]}0"
     word_form << words.fetch(temp_val)
     temp_val = temp_val.to_i
     if value - temp_val > 0
@@ -27,7 +27,7 @@ def word_form_of_number(words, value, accumulated_string)
       word_form = word_form_of_number(words, value - temp_val, word_form)
     end
   else
-    temp_val = "#{value.to_s.each_char.first}"
+    temp_val = "#{value.to_s[0]}"
     word_form << words.fetch(temp_val)
     word_form << " hundred"
     temp_val = (temp_val.to_i * 100)
