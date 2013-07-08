@@ -21,26 +21,27 @@ def word_form_of_number(words, value, accumulated_string)
   elsif value < 100
     temp_val = "#{value.to_s.each_char.first}0"
     word_form << words.fetch(temp_val)
-    if value - temp_val.to_i > 0
+    temp_val = temp_val.to_i
+    if value - temp_val > 0
       word_form << "-" 
-      word_form = word_form_of_number(words, value - temp_val.to_i, word_form)
+      word_form = word_form_of_number(words, value - temp_val, word_form)
     end
   else
     temp_val = "#{value.to_s.each_char.first}"
     word_form << words.fetch(temp_val)
     word_form << " hundred"
-    if value - temp_val.to_i * 100 > 0
+    temp_val = (temp_val.to_i * 100)
+    if value - temp_val > 0
       word_form << " and "
-      word_form = word_form_of_number(words, value - temp_val.to_i * 100, word_form)
+      word_form = word_form_of_number(words, value - temp_val, word_form)
     end 
   end
   word_form
 end
 
 def letter_count(string)
-  count = 0
-  string.each_char { |c| count += 1 if c >= 'a' && c <= 'z' }
-  count
+  valid_chars = string.each_char.select { |c| c >= 'a' && c <= 'z' }
+  valid_chars.count
 end
 
 
