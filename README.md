@@ -1,1 +1,1 @@
-My Ruby solutions to Project Euler problems 
+My Ruby solutions to Project Euler problems.
