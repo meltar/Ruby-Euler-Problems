@@ -10,7 +10,7 @@ require 'prime'
 def find_largest_prime_factor number
 	largest_factor = 1
 	
-	(1..Math.sqrt(number)).reverse_each do |x|
+	(2..Math.sqrt(number)).reverse_each do |x|
 		if number % x == 0 && Prime.prime?(x)
 			largest_factor = x
 			break
