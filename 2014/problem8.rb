@@ -36,7 +36,7 @@ def find_greatest_product consecutive_digits, filename
 	greatest_product = 0
 	index = 0
 
-	while index < numbers.length - 6 
+	while index < numbers.length - (consecutive_digits - 1)
 		current_product = 1
 		consecutive_digits.times do |i|
 			current_product = current_product * numbers[index + i]
