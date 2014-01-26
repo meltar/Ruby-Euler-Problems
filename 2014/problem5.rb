@@ -13,16 +13,7 @@ def smallest_multiple max
 
 	until found
 		current_number += 20
-		match = true
-
-		(1..max).each do |i|
-			unless current_number % i == 0
-				match = false
-				break
-			end
-		end
-
-		found = true if match
+		found = (1..max).all? { |i| current_number % i == 0 }
 	end
 
 	current_number
