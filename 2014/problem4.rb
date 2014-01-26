@@ -12,8 +12,8 @@ def largest_palindrome digits
 	min = range_min digits
 	max = range_max digits
 
-	(min..max).each do |x|
-		(x..max).each do |y|
+	(min...max).each do |x|
+		(x...max).each do |y|
 			product = x * y
 			if product.to_s == product.to_s.reverse && product > largest_found
 				largest_found = product
@@ -25,15 +25,11 @@ def largest_palindrome digits
 end
 
 def range_max digits
-	max = 1
-	digits.times { max = max * 10 }
-	max
+	10 ** digits
 end
 
 def range_min digits
-	min = 1
-	(digits - 1).times { min = min * 10 }
-	min = min - 1
+	10 ** (digits - 1)
 end
 
 #puts largest_palindrome 2 
