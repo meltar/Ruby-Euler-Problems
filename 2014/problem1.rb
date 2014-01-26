@@ -9,7 +9,7 @@
 def multiplier_total multiples, limit
 	total = 0
 	1.upto(limit - 1) do |number|
-		total += number if number % 3 == 0 || number % 5 == 0
+		total += number if multiples.any? { |multiple| number % multiple == 0 }
 	end
 	total
 end
